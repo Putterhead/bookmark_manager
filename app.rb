@@ -19,8 +19,7 @@ class BMM < Sinatra::Base
   end
 
   post '/links' do
-    p params
-    Link.create(params)
+    # Link.create(params)
     redirect '/links'
   end
 

@@ -1,6 +1,7 @@
+ENV["RACK_ENV"] ||= "development"
+
 require './models/link'
 require 'sinatra/base'
-require 'rspec'
 
 class BMM < Sinatra::Base
 
@@ -19,7 +20,7 @@ class BMM < Sinatra::Base
   end
 
   post '/links' do
-    # Link.create(params)
+    Link.create(params)
     redirect '/links'
   end
 

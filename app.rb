@@ -1,6 +1,6 @@
 ENV["RACK_ENV"] ||= "development"
 
-require './models/link'
+require './models/data_mapper_setup'
 require 'sinatra/base'
 
 class BMM < Sinatra::Base

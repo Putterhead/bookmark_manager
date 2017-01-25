@@ -4,7 +4,10 @@ require 'spec_helper'
 feature 'Viewing links' do
 
   scenario 'I can see existing links on the links page' do
-    Link.create(url: 'http://zty.pe/', title: 'ZType')
+    link = Link.new(url: "ztype.com", title: "ZType")
+    tag = Tag.first_or_create(name: "")
+    link.tags << tag
+    link.save
 
     visit '/links'
     expect(page.status_code).to eq 200
@@ -14,4 +17,3 @@ feature 'Viewing links' do
     end
   end
 end
-  

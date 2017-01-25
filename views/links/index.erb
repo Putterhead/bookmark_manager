@@ -2,9 +2,10 @@
 
 <ul id='links'>
   <% @links.each do |link| %>
-    <li>      
+    <li>
       Title: <%= link.title %>
       URL:   <%= link.url  %>
+      Tags:  <%= link.tags[0].name %>
     </li>
   <% end %>
 </ul>

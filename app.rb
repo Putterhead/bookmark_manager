@@ -27,6 +27,14 @@ class BMM < Sinatra::Base
     redirect '/links'
   end
 
+  get '/tags/:name' do
+    tag = Tag.first(name: params[:name])
+    p tag
+    @links = tag ? tag.link : []
+    p @links
+    erb :'/links/index'
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

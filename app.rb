@@ -20,18 +20,17 @@ class BMM < Sinatra::Base
   end
 
   post '/links' do
-    link = Link.new(url: params[:url], title: params[:title])
-    tag = Tag.first_or_create(name: params[:tags])
-    link.tag << tag
+    link = Link.create(url: params[:url], title: params[:title])
+    params[:tags].split.each do |pass_tag|
+      link.tag << Tag.first_or_create(name: pass_tag)
+    end
     link.save
     redirect '/links'
   end
 
   get '/tags/:name' do
     tag = Tag.first(name: params[:name])
-    p tag
     @links = tag ? tag.link : []
-    p @links
     erb :'/links/index'
   end
 

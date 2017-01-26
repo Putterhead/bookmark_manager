@@ -7,6 +7,7 @@ feature 'Adding links' do
     visit '/links/new'
     fill_in 'title', with: 'bbc.com'
     fill_in 'url', with: 'www.bbc.co.uk'
+    fill_in 'tags', with: ''
     click_button('Add new link')
 
     expect(current_path).to eq '/links'

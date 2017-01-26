@@ -20,4 +20,5 @@ feature 'Filtering links' do
       expect(page).to have_content('bubbles-web')
     end
   end
+
 end

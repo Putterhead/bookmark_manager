@@ -12,7 +12,6 @@ class BMM < Sinatra::Base
   end
 
   get '/links' do # adding links path
-    @user = session[:user_email]
     @links = Link.all # using DataMapper to get all the Link ojects
     erb :'links/index'
   end
@@ -42,11 +41,16 @@ class BMM < Sinatra::Base
   end
 
   post '/signup' do
-    user = User.create(email: params[:email])
-    session[:user_email] = user.email
+    user = User.create(email: params[:email], password: params[:password])
+    session[:user_id] = user.id
     redirect '/links'
   end
 
+  helpers do
+    def current_user
+      @current_user ||= User.first(id: session[:user_id])
+    end
+  end
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

@@ -11,5 +11,7 @@
 </ul>
 
 <ul id='signup'>
-  Thank you for registering <%=@user %> 
+  <% if current_user %>
+  Thank you for registering <%=current_user.email %>
+  <% end %>
 </ul>

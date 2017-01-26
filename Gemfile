@@ -7,6 +7,7 @@ gem "dm-postgres-adapter"
 gem 'sinatra'
 gem 'rake'
 gem 'rspec-sinatra'
+gem 'bcrypt'
 
 group :test do
   gem "rspec"

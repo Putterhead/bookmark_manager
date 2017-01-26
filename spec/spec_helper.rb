@@ -3,6 +3,7 @@ ENV['RACK_ENV'] = 'test'
 
 require './models/data_mapper_setup'
 require 'database_cleaner'
+require_relative './features/web_helpers'
 
 
 

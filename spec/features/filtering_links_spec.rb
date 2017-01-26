@@ -8,16 +8,14 @@ feature 'Filtering links' do
   scenario 'I want to be able to find bookmarks by filtering the links by tag' do
 
     visit "/links/new"
-    fill_in 'title', with: 'bubbles-web'
-    fill_in 'url', with: 'www.bubbles.com'
-    fill_in 'tags', with: 'bubbles'
+    enter_links
     click_button('Add new link')
 
-    visit '/tags/bubbles'
+    visit '/tags/news'
     expect(page.status_code).to eq 200
 
     within 'ul#links' do
-      expect(page).to have_content('bubbles-web')
+      expect(page).to have_content('bbc.com')
     end
   end
 

@@ -4,6 +4,7 @@ require './models/data_mapper_setup'
 require 'sinatra/base'
 
 class BMM < Sinatra::Base
+  enable :sessions
 
   get '/' do
     'Hello BMM!'
@@ -11,11 +12,13 @@ class BMM < Sinatra::Base
   end
 
   get '/links' do # adding links path
+    @user = session[:user_email]
     @links = Link.all # using DataMapper to get all the Link ojects
     erb :'links/index'
   end
 
   get '/links/new' do
+
     erb :'links/new'
   end
 
@@ -32,6 +35,16 @@ class BMM < Sinatra::Base
     tag = Tag.first(name: params[:name])
     @links = tag ? tag.link : []
     erb :'/links/index'
+  end
+
+  get '/signup/new' do
+    erb :'/links/signup'
+  end
+
+  post '/signup' do
+    user = User.create(email: params[:email])
+    session[:user_email] = user.email
+    redirect '/links'
   end
 
   # start the server if ruby file executed directly

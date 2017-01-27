@@ -2,15 +2,13 @@
 
 <form method="POST" action="/users">
   <label for='Email'>
-    Email:
-    <input type="text" name="email" value="" />
+    Email:  <input name="email" type='text' value="<%= @user.email %>" required>
   </label><br>
   <label for='Password'>
-    Password:
-    <input type="password" name="password" value="" />
+    Password:  <input type="password" name="password" value="" />
   </label><br>
   <label for='password_confirmation'>
-    Password:<input type="password" name="password_confirmation" value="" />
+    Password:  <input type="password" name="password_confirmation" value="" />
   </label><br>
   <input type="submit" value="Confirm" />
 </form>

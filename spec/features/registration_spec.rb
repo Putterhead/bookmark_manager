@@ -10,8 +10,12 @@ feature "Registration of a new user" do
     expect(page).to have_content('Welcome, alice@example.com')
     expect(User.first.email).to eq('alice@example.com')
   end
-    # within 'ul#signup' do
-    #   expect(page).to have_content 'Thank you for registering pete@gmail.com'
-    # end
-  # end
+# Fills in an email and password into the user signup form.
+# Fills in a mismatching confirmation password into the user signup form.
+# Checks that when the form is submitted, no new users are created.
+  scenario 'Requires a matching confirmation password' do
+    expect { sign_up(password_confirmation: 'wrong') }.not_to change(User, :count)
+    # expect(current_path).to eq('/users')
+    # expect(page).to have_content('Password does not match')
+  end
 end

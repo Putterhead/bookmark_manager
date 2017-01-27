@@ -5,6 +5,7 @@ require 'sinatra/base'
 
 class BMM < Sinatra::Base
   enable :sessions
+  set :session_secret, 'super secret'
 
   get '/' do
     'Hello BMM!'
@@ -17,7 +18,6 @@ class BMM < Sinatra::Base
   end
 
   get '/links/new' do
-
     erb :'links/new'
   end
 
@@ -36,11 +36,11 @@ class BMM < Sinatra::Base
     erb :'/links/index'
   end
 
-  get '/signup/new' do
-    erb :'/links/signup'
+  get '/users/new' do
+    erb :'/users/new'
   end
 
-  post '/signup' do
+  post '/users' do
     user = User.create(email: params[:email], password: params[:password])
     session[:user_id] = user.id
     redirect '/links'

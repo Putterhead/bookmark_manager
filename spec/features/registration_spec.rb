@@ -5,17 +5,13 @@
 # Checks that the User count increases by 1.
 
 feature "Registration of a new user" do
-  scenario "adding a sign up form, with email and password" do
-
-    visit "/signup/new"
-    fill_in 'email', with: 'pete@gmail.com'
-    fill_in 'password', with: 'rabbits&hat'
-    expect{click_button('Confirm')}.to change(User, :count).by(1)
-
-    expect(current_path).to eq '/links'
-
-    within 'ul#signup' do
-      expect(page).to have_content 'Thank you for registering pete@gmail.com'
-    end
+  scenario 'I can sign up as a new user' do
+    expect { sign_up }.to change(User, :count).by(1)
+    expect(page).to have_content('Welcome, alice@example.com')
+    expect(User.first.email).to eq('alice@example.com')
   end
+    # within 'ul#signup' do
+    #   expect(page).to have_content 'Thank you for registering pete@gmail.com'
+    # end
+  # end
 end

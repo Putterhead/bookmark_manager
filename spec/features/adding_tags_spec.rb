@@ -17,5 +17,4 @@ feature "adding tags to links" do
     link = Link.first
     expect(link.tag.map(&:name)).to include 'news', 'entertainment'
     end
-
 end
